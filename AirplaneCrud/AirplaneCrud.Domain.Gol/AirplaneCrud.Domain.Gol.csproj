@@ -4,4 +4,14 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+    <PackageReference Include="Ensure.That" Version="8.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AirplaneCrud.Domain\AirplaneCrud.Domain.csproj" />
+    <ProjectReference Include="..\AirplaneCrud.Repository\AirplaneCrud.Repository.csproj" />
+  </ItemGroup>
+
 </Project>
