@@ -2,11 +2,11 @@
 
 namespace AirplaneCrud.Repository.Models.Airplane
 {
-    public interface IAirplane
+    public interface IAirplaneRepositoryModel
     {
         string Id { get; set; }
         string Model { get; set; }
-        int MaxPassenger { get; set; }
+        int MaxPassengers { get; set; }
         DateTime CreateDate { get; set; }
     }
 }
