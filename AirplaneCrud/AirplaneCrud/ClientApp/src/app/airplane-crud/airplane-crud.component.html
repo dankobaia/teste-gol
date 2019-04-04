@@ -1,0 +1,45 @@
+<button type="button" (click)="newItem()" class="btn btn-success float-right mb-3">Cadastrar</button>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Código do avião</th>
+      <th scope="col">Modelo</th>
+      <th scope="col">Quantidade de Passageiros</th>
+      <th scope="col">Criado em</th>
+      <th scope="col">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of Airplanes; let i = index">
+      <td>
+        {{item.Id}}
+      </td>
+      <td>
+        <input type="text" *ngIf="item.Editing; else showData" value="{{item.Model}}" />
+        <ng-template #showData>
+          {{item.Model}}
+        </ng-template>
+        {{item.Model}}
+      </td>
+      <td>
+        <input type="text" *ngIf="item.Editing; else showData" value="{{item.MaximumPassengers}}" />
+        <ng-template #showData>
+          {{item.MaximumPassengers}}
+        </ng-template>
+      </td>
+      <td>
+        {{item.CreateDate}}
+      </td>
+      <td>
+        <div *ngIf="item.Editing; else showOptions">
+          <button class="btn btn-sm btn-outline-success mr-3" value="{{item.Model}}">Salvar</button>
+          <button type="button" (click)="cancel(i)" class="btn btn-sm btn-outline-danger">Cancelar</button>
+        </div>
+        <ng-template #showOptions>
+          <button type="button" (click)="edit(item.Id)" class="btn btn-sm btn-outline-warning mr-3">Editar</button>
+          <button type="button" class="btn btn-sm btn-outline-danger">Deletar</button>
+        </ng-template>
+      </td>
+    </tr>
+  </tbody>
+</table>
