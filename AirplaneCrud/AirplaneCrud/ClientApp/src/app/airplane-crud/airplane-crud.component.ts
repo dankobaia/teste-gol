@@ -11,7 +11,7 @@ import { Event } from '@angular/router';
 export class AirplaneCrudComponent {
   public Airplanes = Array<AirplaneModel>();
 
-  constructor() {
+  constructor(private http: HttpClient) {
     let a = new AirplaneModel(null);
     a.Id = "1";
     a.Editing = false;
@@ -27,6 +27,8 @@ export class AirplaneCrudComponent {
     b.Model = "321";
     b.CreateDate = "10/10/2019";
     this.Airplanes.push(b);
+
+    this.getProducts();
   };
 
   newItem() {
@@ -50,5 +52,10 @@ export class AirplaneCrudComponent {
     this.Airplanes[index].Editing = false;
     if (!this.Airplanes[index].Id)
       this.Airplanes.splice(index, 1)
+  }
+
+  getProducts() {
+    fetch("https://localhost:44374/api/airplane/")
+      .then(response => response.json())
   }
 }
