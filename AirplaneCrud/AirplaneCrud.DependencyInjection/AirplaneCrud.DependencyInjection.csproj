@@ -4,4 +4,16 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AirplaneCrud.Domain.Gol\AirplaneCrud.Domain.Gol.csproj" />
+    <ProjectReference Include="..\AirplaneCrud.Domain\AirplaneCrud.Domain.csproj" />
+    <ProjectReference Include="..\AirplaneCrud.Repository.EF\AirplaneCrud.Repository.EF.csproj" />
+    <ProjectReference Include="..\AirplaneCrud.Repository\AirplaneCrud.Repository.csproj" />
+  </ItemGroup>
+
 </Project>
