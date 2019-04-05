@@ -1,4 +1,4 @@
-# Teste Técnico Desenvolvimento FullStack .Net
+﻿# Teste Técnico Desenvolvimento FullStack .Net
 
 O objetivo principal é criar uma aplicação contendo o CRUD completo da
 tabela Airplane:
@@ -15,7 +15,8 @@ Tecnologias e patterns obrigatórios:
 O código fonte deverá ser armazenado em um repositório público do
 github, e enviar o link para análise.
 
-## Instruções para iniciar
+## Instruções para iniciar (.Net Core 2.2)
+
  1. **npm install dentro do repositorio /AirplaneCrud/ClientApp** *para baixar os pacotes de frontend;*
  2. **dotnet run --project AirplaneCrud**  *para iniciar o projeto de frontend na porta 5200;*
  3. **dotnet run --project AirplaneCrud.API**  *para iniciar a API na porta 5100;*
