@@ -21,3 +21,5 @@ github, e enviar o link para análise.
  3. **dotnet run --project AirplaneCrud.API**  *para iniciar a API na porta 5100;*
 
 > Banco de dados sqlite gerado e atualizado na inicialização da API
+
+> Documentação da API: https://localhost:5100/swagger
