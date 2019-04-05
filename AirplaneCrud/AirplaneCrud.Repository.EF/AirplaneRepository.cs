@@ -9,6 +9,14 @@ namespace AirplaneCrud.Repository.EF
 {
     public class AirplaneRepository : IAirplaneRepository
     {
+        public static void RunMigrations()
+        {
+            using (var dbContext = new AirplaneDbContext())
+            {
+                dbContext.Database.Migrate();
+            }
+        }
+
         public async Task<IAirplaneRepositoryModel> Get(string id)
         {
             using (var dbContext = new AirplaneDbContext())
@@ -47,6 +55,7 @@ namespace AirplaneCrud.Repository.EF
             using (var dbContext = new AirplaneDbContext())
             {
                 return await dbContext.Airplanes
+                .OrderByDescending(i => i.CreateDate)
                 .Skip(offset)
                 .Take(limit)
                 .ToListAsync().ConfigureAwait(false);
@@ -61,6 +70,8 @@ namespace AirplaneCrud.Repository.EF
                 .FindAsync(id)
                 .ConfigureAwait(false);
                 dbContext.Airplanes.Remove(airplane);
+                await dbContext.SaveChangesAsync()
+                  .ConfigureAwait(false);
             }
         }
     }

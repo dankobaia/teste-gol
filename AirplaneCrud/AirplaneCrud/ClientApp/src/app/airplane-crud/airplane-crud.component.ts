@@ -10,33 +10,28 @@ import { Event } from '@angular/router';
 })
 export class AirplaneCrudComponent {
   public Airplanes = Array<AirplaneModel>();
+  public limit: number = 10;
+  public offset: number = 0;
 
   constructor(private http: HttpClient) {
-    let a = new AirplaneModel(null);
-    a.Id = "1";
-    a.Editing = false;
-    a.MaxPassengers = 10;
-    a.Model = "123";
-    a.CreateDate = "10/10/2019";
-    this.Airplanes.push(a);
-
-    let b = new AirplaneModel(null);
-    b.Id = "2";
-    b.Editing = true;
-    b.MaxPassengers = 20;
-    b.Model = "321";
-    b.CreateDate = "10/10/2019";
-    this.Airplanes.push(b);
-
-    this.getProducts();
+    this.getAirplanes();
   };
 
+  nextPage() {
+    this.offset += this.limit;
+    this.getAirplanes();
+  }
+  previousPage() {
+    this.offset -= this.limit;
+    if (this.offset < 0)
+      this.offset = 0;
+    this.getAirplanes();
+  }
   newItem() {
     let creatingItem = this.Airplanes.filter(i => !i.Id);
     if (creatingItem.length === 0) {
-      let b = new AirplaneModel(null);
-      b.Editing = true;
-      this.Airplanes.unshift(b)
+      let newAirplane = new AirplaneModel(null);
+      this.Airplanes.unshift(newAirplane)
     }
   }
 
@@ -54,8 +49,52 @@ export class AirplaneCrudComponent {
       this.Airplanes.splice(index, 1)
   }
 
-  getProducts() {
-    fetch("https://localhost:44374/api/airplane/")
+  getAirplanes() {
+    fetch("https://localhost:5100/api/airplane?limit=" + this.limit + "&offset=" + this.offset)
       .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        this.Airplanes = data.map(item => new AirplaneModel(item));
+      })
+  }
+
+  removeAirplane(id: string) {
+    fetch("https://localhost:5100/api/airplane/" + id,
+      {
+        method: "DELETE"
+      })
+      .then(_ => this.getAirplanes())
+  }
+
+  saveAirplane(index: string) {
+    const tr = document.querySelector("tr[data-index='" + index + "']");
+    const model = <HTMLInputElement>tr.querySelector("td input[name='model']");
+    const maxPassengers = <HTMLInputElement>tr.querySelector("td input[name='maxPassengers']");
+    const id = <HTMLInputElement>tr.querySelector("td input[name='id']");
+
+    debugger;
+    var requestBody = { model: model.value, maxPassengers: parseInt(maxPassengers.value) };
+    if (id.value == "") {
+      fetch("https://localhost:5100/api/airplane",
+        {
+          method: 'POST',
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody)
+        })
+        .then(_ => this.getAirplanes())
+    }
+    else {
+      fetch("https://localhost:5100/api/airplane/" + id.value,
+        {
+          method: 'PUT',
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody)
+        })
+        .then(_ => this.getAirplanes())
+    }
   }
 }

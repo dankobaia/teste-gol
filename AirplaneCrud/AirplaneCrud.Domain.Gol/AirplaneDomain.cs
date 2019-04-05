@@ -34,7 +34,8 @@ namespace AirplaneCrud.Domain.Gol
 
         public async Task<IAirplane> Edit(string id, ICreateAirplane editAirplane)
         {
-            var dbAirplane = await airplaneRepository.Get(id);
+            var dbAirplane = await airplaneRepository.Get(id)
+                .ConfigureAwait(false);
             if (dbAirplane == null)
             {
                 throw new NullReferenceException($"Aeronave {id} não encontrada");
@@ -55,8 +56,11 @@ namespace AirplaneCrud.Domain.Gol
             {
                 limit = 100;
             }
-            var result = await airplaneRepository.List(limit, offset);
-            return result.Select(i => mapper.Map<Airplane>(i));
+            var result = await airplaneRepository.List(limit, offset)
+                .ConfigureAwait(false);
+            return result
+                .Select(i => mapper.Map<Airplane>(i))
+                .OrderByDescending(i => i.CreateDate);
         }
 
         public async Task Remove(string id)

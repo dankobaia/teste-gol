@@ -14,10 +14,4 @@
     <ProjectReference Include="..\AirplaneCrud.Repository\AirplaneCrud.Repository.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="airplane.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

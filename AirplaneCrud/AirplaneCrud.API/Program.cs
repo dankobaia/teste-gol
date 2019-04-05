@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace AirplaneCrud.API
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
@@ -13,7 +13,7 @@ namespace AirplaneCrud.API
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
             return WebHost.CreateDefaultBuilder(args)
-                        .UseUrls("http://*:5100")
+                        .UseUrls("https://*:5100")
                         .UseStartup<Startup>();
         }
     }

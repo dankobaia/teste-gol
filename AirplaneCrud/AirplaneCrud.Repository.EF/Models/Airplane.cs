@@ -19,6 +19,14 @@ namespace AirplaneCrud.Repository.EF.Models
             CreateDate = model.CreateDate;
         }
 
+        public Airplane(IAirplaneRepositoryModel model, Airplane dbAIrplane)
+        {
+            Id = dbAIrplane.Id;
+            Model = model.Model;
+            MaxPassengers = model.MaxPassengers;
+            CreateDate = dbAIrplane.CreateDate;
+        }
+
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key, Column(Order = 0)]
         public string Id { get; set; }

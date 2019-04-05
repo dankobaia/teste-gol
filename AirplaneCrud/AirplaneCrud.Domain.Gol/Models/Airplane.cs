@@ -12,7 +12,7 @@ namespace AirplaneCrud.Domain.Gol.Models
         private DateTime _createDate;
         private string _model;
 
-        private Airplane()
+        protected Airplane()
         {
         }
 

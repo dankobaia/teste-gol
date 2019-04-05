@@ -11,6 +11,8 @@ namespace AirplaneCrud.DependencyInjection.Service
         public static void ResolveApi(this IServiceCollection services)
         {
             services.AddScoped<IAirplaneRepository, AirplaneCrud.Repository.EF.AirplaneRepository>();
+            //Run Migrations
+            Repository.EF.AirplaneRepository.RunMigrations();
 
             services.AddScoped<IAirplaneDomain, AirplaneCrud.Domain.Gol.AirplaneDomain>();
 

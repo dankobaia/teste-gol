@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 namespace AirplaneCrud.Repository.EF.Migrations
 {
@@ -16,10 +16,7 @@ namespace AirplaneCrud.Repository.EF.Migrations
                     MaxPassengers = table.Column<int>(nullable: false),
                     CreateDate = table.Column<DateTime>(nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Airplanes", x => x.Id);
-                });
+                constraints: table => table.PrimaryKey("PK_Airplanes", x => x.Id));
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

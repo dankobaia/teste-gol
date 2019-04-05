@@ -10,36 +10,38 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of Airplanes; let i = index">
+    <tr *ngFor="let item of Airplanes; let i = index;" [attr.data-index]="i">
       <td>
+        <input type="hidden" name="id" value="{{item.Id}}" />
         {{item.Id}}
       </td>
       <td>
-        <input type="text" *ngIf="item.Editing; else showData" value="{{item.Model}}" />
-        <ng-template #showData>
+        <input type="text" *ngIf="item.Editing;" name="model" value="{{item.Model}}" />
+        <span *ngIf="!item.Editing;">
           {{item.Model}}
-        </ng-template>
-        {{item.Model}}
+        </span>
       </td>
       <td>
-        <input type="text" *ngIf="item.Editing; else showData" value="{{item.MaximumPassengers}}" />
-        <ng-template #showData>
-          {{item.MaximumPassengers}}
-        </ng-template>
+        <input type="number" *ngIf="item.Editing;" name="maxPassengers" value="{{item.MaxPassengers}}" />
+        <span *ngIf="!item.Editing;">
+          {{item.MaxPassengers}}
+        </span>
       </td>
       <td>
-        {{item.CreateDate}}
+        {{item.CreateDate | date:'dd/MM/yyyy'}}
       </td>
       <td>
         <div *ngIf="item.Editing; else showOptions">
-          <button class="btn btn-sm btn-outline-success mr-3" value="{{item.Model}}">Salvar</button>
+          <button (click)="saveAirplane(i)" class="btn btn-sm btn-outline-success mr-3">Salvar</button>
           <button type="button" (click)="cancel(i)" class="btn btn-sm btn-outline-danger">Cancelar</button>
         </div>
         <ng-template #showOptions>
           <button type="button" (click)="edit(item.Id)" class="btn btn-sm btn-outline-warning mr-3">Editar</button>
-          <button type="button" class="btn btn-sm btn-outline-danger">Deletar</button>
+          <button type="button" (click)="removeAirplane(item.Id)" class="btn btn-sm btn-outline-danger">Deletar</button>
         </ng-template>
       </td>
     </tr>
   </tbody>
 </table>
+<button type="button" (click)="previousPage()" class="btn btn-info  mb-3">Anterior</button>
+<button type="button" (click)="nextPage()" class="btn btn-info float-right mb-3">Proxima</button>

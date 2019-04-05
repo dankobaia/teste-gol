@@ -10,7 +10,7 @@ namespace AirplaneCrud.Repository.EF
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(($"Data Source={AppContext.BaseDirectory}airplane.db"));
+            optionsBuilder.UseSqlite($"Data Source={AppContext.BaseDirectory}airplane.db");
         }
     }
 }

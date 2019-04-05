@@ -45,6 +45,17 @@ namespace AirplaneCrud.API
                 app.UseHsts();
             }
 
+            // workarrounf netcore 2.2 issue https://github.com/aspnet/AspNetCore/issues/4398
+            app.Use(async (ctx, next) =>
+            {
+                await next()
+                .ConfigureAwait(false);
+                if (ctx.Response.StatusCode == 204)
+                {
+                    ctx.Response.ContentLength = 0;
+                }
+            });
+
             app.UseCors("CorsPolicy");
             app.UseHttpsRedirection();
             app.UseMvc();

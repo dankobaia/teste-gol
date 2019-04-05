@@ -43,6 +43,7 @@ namespace AirplaneCrud.API.Controllers
         [HttpDelete("{id}")]
         public Task Delete(string id)
         {
+            Response.StatusCode = 204;
             return airplaneDomain.Remove(id);
         }
     }

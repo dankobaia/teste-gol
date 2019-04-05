@@ -1,15 +1,22 @@
+import { Data } from "@angular/router";
+
 export class AirplaneModel {
   public Id: string;
   public Model: string;
   public MaxPassengers: number;
-  public CreateDate: string;
+  public CreateDate: Data;
   public Editing: boolean;
 
   constructor(item: any) {
-    //this.Id = item.Id;
-    //this.Model = item.Model;
-    //this.MaximumPassengers = item.MaximumPassengers;
-    //this.CreateDate = item.IdCreateDate
+
+    if (item == null) {
+      this.Editing = true;
+      return
+    }
+    this.Id = item.id;
+    this.Model = item.model;
+    this.MaxPassengers = item.maxPassengers;
+    this.CreateDate = item.createDate
     this.Editing = false;
   }
 }
