@@ -72,7 +72,6 @@ export class AirplaneCrudComponent {
     const maxPassengers = <HTMLInputElement>tr.querySelector("td input[name='maxPassengers']");
     const id = <HTMLInputElement>tr.querySelector("td input[name='id']");
 
-    debugger;
     var requestBody = { model: model.value, maxPassengers: parseInt(maxPassengers.value) };
     if (id.value == "") {
       fetch("https://localhost:5100/api/airplane",
