@@ -15,12 +15,22 @@ Tecnologias e patterns obrigatórios:
 O código fonte deverá ser armazenado em um repositório público do
 github, e enviar o link para análise.
 
-## Instruções para iniciar (.Net Core 2.2)
+## Inicialização (.Net Core 2.2)
 
- 1. **npm install dentro do repositorio /AirplaneCrud/ClientApp** *para baixar os pacotes de frontend;*
- 2. **dotnet run --project AirplaneCrud**  *para iniciar o projeto de frontend na porta 5200;*
- 3. **dotnet run --project AirplaneCrud.API**  *para iniciar a API na porta 5100;*
+ 1. Dentro do repositório ``AirplaneCrud/ClientApp``, rode o seguinte comando:
+```
+npm install
+```
+ 2. Em seguida, na pasta ``AirplaneCrud``, inicie o projeto na porta 5200, através do comando:
+ ```
+ dotnet run --project AirplaneCrud
+ ```
+ 3. Por último, inicie a API na porta 5100 utilizando o comando abaixo:
+ ```
+ dotnet run --project AirplaneCrud.API
+ ```
 
-> Banco de dados sqlite gerado e atualizado na inicialização da API
+## Observações
 
-> Documentação da API: https://localhost:5100/swagger
+* Banco de dados ``sqlite`` é gerado e atualizado ao iniciar a API;
+* Para a documentação da API, [clique aqui](https://localhost:5100/swagger) ao ter feito o processo de inicialização mencionado anteriormente.
