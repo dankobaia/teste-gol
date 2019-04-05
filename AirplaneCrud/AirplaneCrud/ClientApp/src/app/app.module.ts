@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { AirplaneCrudComponent } from './airplane-crud/airplane-crud.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

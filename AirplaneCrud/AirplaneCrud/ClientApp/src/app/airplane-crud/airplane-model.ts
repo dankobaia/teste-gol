@@ -8,7 +8,6 @@ export class AirplaneModel {
   public Editing: boolean;
 
   constructor(item: any) {
-
     if (item == null) {
       this.Editing = true;
       return
